@@ -1,22 +1,31 @@
 class PostsController < ApplicationController
- 
-  # GET /posts/1
-  def show
-    render json: @post
+  APP_SECRET = "ToBeOrNotToBeThatIsTheRealQuestionMyGuy"
+  before_action :authenticate, only: [:create, :update, :destroy, :show, :index]
+
+  def index
+      @followee_posts = []
+      @current_user.followees.each do |followee|
+      @followee_posts += followee.posts
+    end
+    render json: { posts: @followee_posts }, status: :ok
   end
 
-  # POST /posts
+  def show
+    posts = @current_user.posts
+    render json: posts
+  end
+
   def create
-    @post = @current_user.posts.create(post_params)
-    if @post.valid?
+    @post = @current_user.posts.new(post_params)
+    if @post.save
       render json: @post, status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /posts/1
   def update
+    @post = @current_user.posts.find(params[:id])
     if @post.update(post_params)
       render json: @post
     else
@@ -24,15 +33,15 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
   def destroy
+    @post = @current_user.posts.find(params[:id])
     @post.destroy
     render json: {message: 'Post has been obliterated.'}, status: :ok
   end
 
   private
-    # Only allow a trusted parameter "white list" through.
-    def post_params
-      params.require(:post).permit(:content, :image_url, :likes_count)
-    end
+
+  def post_params
+    params.permit(:caption, :image_url, :user_id)
+  end
 end
