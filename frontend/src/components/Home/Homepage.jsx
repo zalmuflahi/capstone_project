@@ -18,12 +18,11 @@ const Homepage = ({ user, setUser }) => {
                 headers: { 'Authorization': Cookies.get('token') }
             })
             let res = await req.json()
-            if (res.posts) setPosts(res.posts);
+            setPosts(res);
         }
         if (Cookies.get('token'))
             loadFeed()
     }, [])
-
 
     return (
         <div>

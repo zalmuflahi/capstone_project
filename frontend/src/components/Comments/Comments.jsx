@@ -14,9 +14,10 @@ const Comments = ({user, setUser}) =>{
             let req = await fetch(`http://localhost:3000/post_comments/${window.location.href.match(/\d+$/)[0]}`, {
                 headers: { 'Authorization': Cookies.get('token') },
             })
-            let res = await req.json()
-            setComments(res)
-            setUser(res)
+           if (req.status === 200){
+               let res = await req.json()
+               setComments(res)
+           }
         }
         if (Cookies.get('token')){
             loadComments()

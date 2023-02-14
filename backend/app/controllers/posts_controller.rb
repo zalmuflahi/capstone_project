@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   APP_SECRET = "ToBeOrNotToBeThatIsTheRealQuestionMyGuy"
-  before_action :authenticate, only: [:create, :update, :destroy, :show, :index, :likes]
+  before_action :authenticate, only: [:create, :update, :destroy, :show, :index]
 
   def index
       postss = @current_user.posts
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
       @current_user.followees.each do |followee|
       @followee_posts += followee.posts
     end
-    render json: { posts: @followee_posts + postss }, status: :ok
+    render json: @followee_posts + postss , status: :ok
   end
 
   def show

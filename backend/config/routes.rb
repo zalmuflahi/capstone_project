@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   post '/createcomment/:id', to: 'comments#createcomment'
   patch 'hearts/:id', to: 'comments#hearts'
   patch '/posts/:id', to: 'posts#update'
-  patch '/likes/:id', to: 'posts#likes'
+  get '/toggle_likes/:id', to: 'likes#toggle_likes'
   post '/posts', to: 'posts#create'
   get '/share/:id', to: 'shares#create'
   get '/sharedcomment/:id', to: 'shares#sharecomment'
+
 end
