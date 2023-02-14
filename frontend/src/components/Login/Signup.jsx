@@ -1,6 +1,8 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import './login.css'
 const Signup = () => {
+    const navigate = useNavigate()
     const [first_name, setFirst_name] = useState("")
     const [last_name, setLast_name] = useState("")
     const [username, setUsername] = useState("");
@@ -17,8 +19,11 @@ const Signup = () => {
                 body: JSON.stringify({ username, email, password, last_name, first_name }),
             });
             const data = await response.json();
+
             if (!response.ok) {
                 throw new Error(data.message);
+            } else {
+                navigate('/login');
             }
         } catch (error) {
             setError(error.message);
@@ -26,40 +31,68 @@ const Signup = () => {
     };
 
     return (
-        <div>
+        <div className='login-box'>
+            <h2>Signup</h2>
             <form onSubmit={createUser}>
                 {error && <p>{error}</p>}
+                <div className="user-box">
                 <input
                     type="text"
                     placeholder="First name"
                     value={first_name}
                     onChange={(e) => setFirst_name(e.target.value)}
                 />
+                </div>
+                <div className="user-box">
                 <input
                     type="text"
                     placeholder="First name"
                     value={last_name}
                     onChange={(e) => setLast_name(e.target.value)}
                 />
+                </div>
+                <div className="user-box">
                 <input
                     type="text"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
+                </div>
+                <div className="user-box">
                 <input
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
+                </div>
+                <div className="user-box">
                 <input
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Sign Up</button>
+                </div>
+                <button style={{ background: 'none', border: 'none', padding: '10px' }} type="submit" >
+                    <a >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        CREATE
+                    </a>
+                </button>
+                <button style={{ background: 'none', border: 'none', padding: '20px' }} onClick={()=>{navigate('/login')}}>
+                    <a >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        CANCEL
+                    </a>
+                </button>
             </form>
         </div>
     )

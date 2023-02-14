@@ -28,11 +28,12 @@ const PostContainer = ({ user, setUser }) => {
             }
             const res = await req.json();
             setUser(res.user);
-            navigate('/newsfeed')
+            navigate('/')
         } catch (error) {
             setError(error.message);
         }
     };
+
 
     return (
         <div>
@@ -52,7 +53,7 @@ const PostContainer = ({ user, setUser }) => {
                 />
                 <button type="submit">Create Post</button>
             </form>
-            <button onClick={() => navigate('/newsfeed')}>Cancel</button>
+            <button onClick={() => navigate('/')}>Cancel</button>
         </div>
     );
 };

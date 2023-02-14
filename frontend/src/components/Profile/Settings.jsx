@@ -6,7 +6,7 @@ const navigate = useNavigate();
     const logout = () => {
         Cookies.remove('token')
         setUser({ username: '', followee: '', followers: '', posts: '', first_name: '', last_name: '' })  
-        navigate('/')
+        navigate('/login')
     }
     return(
         <div>

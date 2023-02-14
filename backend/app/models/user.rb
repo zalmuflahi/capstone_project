@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :shares
   has_many :comments
+  has_many :likes
   has_many :shared_posts, through: :shares, source: :post
   has_many :shared_comments, through: :shares, source: :comment
 

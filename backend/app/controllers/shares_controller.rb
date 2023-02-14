@@ -1,18 +1,20 @@
 class SharesController < ApplicationController
-  before_action :set_post, only: [:create]
+  before_action :authenticate, only: [:create, :sharecomment]
 
   def create
-    @share = @current_user.shares.new(post_id: @post.id)
-    if @share.save
-      render json: @share, status: :created
+    original_post = Post.find(params[:id])
+    new_post = Post.new(caption: original_post.caption, image_url: original_post.image_url, user_id: @current_user.id)
+    if new_post.save
+      render json: new_post, status: :created
     else
-      render json: @share.errors, status: :unprocessable_entity
+      render json: new_post.errors, status: :unprocessable_entity
     end
   end
 
-  private
 
-  def set_post
-    @post = Post.find(params[:post_id, :comment_id])
+  def sharecomment
+    original_comment = Comment.find(params[:id])
+    new_post1 = Post.create!(caption: original_comment.text, user_id: @current_user.id)
+    render json: new_post1
   end
 end

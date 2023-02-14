@@ -1,3 +1,3 @@
 class LikeSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :user_id, :post_id, :comment_id
 end

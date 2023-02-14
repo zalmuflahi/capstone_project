@@ -1,65 +1,77 @@
-import Login from './Login'
-import Homepage from './Homepage'
-import Profile from './Profile'
-import Settings from './Settings'
-import Areyousure from './ShadowRealm/Areyousure'
-import Areyousureyousure from './ShadowRealm/Areyousureyousure'
-import Youreallywantto from './ShadowRealm/Youreallywantto'
+import Login from './components/Login/Login'
+import Homepage from './components/Home/Homepage'
+import Profile from './components/Profile/Profile'
+import Settings from './components/Profile/Settings'
+import Signup from './components/Login/Signup'
+import Areyousure from './components/ShadowRealm/Areyousure'
+import Areyousureyousure from './components/ShadowRealm/Areyousureyousure'
+import Youreallywantto from './components/ShadowRealm/Youreallywantto'
+import Comments from './components/Comments/Comments.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import { useState,useEffect } from 'react'
-import PostContainer from './PostContainer';
-import Shadowrealm from './ShadowRealm/Shadowrealm'
-import Editprofile from './Editprofile'
+import PostContainer from './components/Post/PostContainer';
+import Shadowrealm from './components/ShadowRealm/Shadowrealm'
+import Editprofile from './components/Profile/Editprofile'
 import Cookies from "js-cookie"
 
 function App() {
   const [user, setUser] = useState({ username:'', followee: '', followers: '', posts:'', first_name: '', last_name: ''})
+  
+
   const router = createBrowserRouter([
+        {
+          path: "/",
+          element: <Homepage user={user} setUser={setUser} />,
+        }, 
+        {
+          path: "/profile",
+          element: <Profile user={user} setUser={setUser} />,
+        },
+        {
+          path: "/edit_profile",
+          element: <Editprofile user={user} setUser={setUser} />,
+        },
+        {
+          path: "/settings",
+          element: <Settings setUser={setUser} />,
+        },
+        {
+          path: "/upload",
+          element: <PostContainer user={user} setUser={setUser} />,
+        },
+        {
+          path: "/comments/:id",
+          element: <Comments user={user} setUser={setUser} />,
+        },
+        {
+          path: "/yes_delete_it",
+          element: <Areyousureyousure />,
+        },
+        {
+          path: "/yes_i_am",
+          element: <Areyousure />,
+        },
+        {
+          path: "/door2shadowrealm",
+          element: <Youreallywantto />,
+        },
+        {
+          path: "/shadowrealm",
+          element: <Shadowrealm user={user} setUser={setUser} />,
+        },
     {
-      path: "/",
+      path: "/login",
       element: <Login user={user} setUser={setUser}/>,
     },
     {
-      path: "/newsfeed",
-      element: <Homepage />,
-    },
-    ,
-    {
-      path: "/edit_profile",
-      element: <Editprofile user={user} setUser={setUser} />,
-    },
-    {
-      path: "/profile",
-      element: <Profile user={user} setUser={setUser}/>,
-    },
-    {
-      path: "/settings",
-      element: <Settings setUser={setUser} />,
-    },
-    {
-      path: "/upload",
-      element: <PostContainer user={user} setUser={setUser}/>,
-    },
-    {
-      path: "/yes_delete_it",
-      element: <Areyousureyousure />,
-    },
-    {
-      path: "/yes_i_am",
-      element: <Areyousure />,
-    },
-    {
-      path: "/door2shadowrealm",
-      element: <Youreallywantto />,
-    },
-    {
-      path: "/shadowrealm",
-      element: <Shadowrealm user={user} setUser={setUser} />,
+      path: "/Signup",
+      element: <Signup />,
     }
   ]);
+  
 
   useEffect(() => {
     const loadUser = async () => {
@@ -73,9 +85,10 @@ function App() {
       loadUser()
   }, [])
 
+
   return (
     <div className='App'>
-      <RouterProvider router={router} />
+     <RouterProvider router={router} />
     </div>
   )
 }

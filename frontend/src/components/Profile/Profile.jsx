@@ -1,8 +1,8 @@
 import Cookies from "js-cookie"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import Post from "./components/Post.jsx"
-import "./styles/Profile.scss"
+import Post from "../Post/Post.jsx"
+import "./Profile.scss"
 const Profile = ({ user, setUser }) => {
     const navigate = useNavigate()
     const [userposts, setUserposts] = useState([])
@@ -24,17 +24,13 @@ const Profile = ({ user, setUser }) => {
 
     return (
         <div className="Profile">
-            <div className="Profile-btns">
-                <button onClick={() => { navigate('/newsfeed') }}>Back</button>
-                <button onClick={() => { navigate('/settings') }}>⚙️</button>
-            </div>
-
             <div className="Profile-main">
+                <img src={user.pfp} alt={user.username}/>
                 <h1>{user.username}</h1>
                 <p>Following: {user.followee}</p>
                 <p>Followers: {user.followers}</p>
-
-                <h2>Posts:</h2>
+                <hr/>
+                <h2>Posts</h2>
                 <div className="Profile-main-container">
                     {userposts.map(post => (
                         <Post post={post} />

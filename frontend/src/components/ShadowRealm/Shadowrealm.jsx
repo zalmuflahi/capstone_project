@@ -21,7 +21,7 @@ const Shadowrealm = ({user, setUser}) => {
             }
 
             setUser(null);
-            navigate('/');
+            navigate('/login');
         } catch (e) {
             setError(e.message);
         } finally {
