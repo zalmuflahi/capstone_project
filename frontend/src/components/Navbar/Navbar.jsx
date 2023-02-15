@@ -14,10 +14,10 @@ const Navbar = () => {
     return (
         <div className='navbar'>
             <div className='left'>
-                <Link to='/' style={{textDecoration:"none"}}>
+                <Link to='/home' style={{textDecoration:"none"}}>
                 <span>No Case</span>
                 </Link>
-                <HomeOutlined onClick={()=>{navigate('/')}}/>
+                <HomeOutlined onClick={()=>{navigate('/home')}}/>
                 <DarkModeOutlined />
                 <GridViewOutlined />
                 <div className='search'>

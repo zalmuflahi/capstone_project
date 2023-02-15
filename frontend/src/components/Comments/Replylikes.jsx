@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import Cookies from 'js-cookie'
 
-export default function Commentlikes({ comment }) {
+const Replylikes = ({comment}) => {
     const [heart_count, setHeart_count] = useState(comment.heart_count)
 
-    const clicklike = async () => {
+    const replylike = async () => {
         if (!Cookies.get('token')) return;
         let req = await fetch(`http://localhost:3000/hearts/${comment.id}`, {
             method: 'PATCH',
@@ -20,12 +20,10 @@ export default function Commentlikes({ comment }) {
         let res = await req.json()
         if (res) setHeart_count(res.heart_count)
     }
-
-    return (
-        <div className="likesButton">
-            <p>{comment.heart_count}</p>
-            <button onClick={() => { clicklike(comment) }}>Like</button>
-        </div>
-    )
-
+    <div className="likesButton">
+        <p>{comment.heart_count}</p>
+        <button onClick={() => { replylike(comment) }}>Like</button>
+    </div>
 }
+
+export default Replylikes

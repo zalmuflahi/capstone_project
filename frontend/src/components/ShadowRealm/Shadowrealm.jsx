@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import Cookies from 'js-cookie'
+import "../Login/Login.css"
+
 const Shadowrealm = ({user, setUser}) => {
     const navigate = useNavigate();
     const [banishment, setBanishment] = useState(false)
@@ -21,7 +23,7 @@ const Shadowrealm = ({user, setUser}) => {
             }
 
             setUser(null);
-            navigate('/login');
+            navigate('/');
         } catch (e) {
             setError(e.message);
         } finally {
@@ -30,12 +32,30 @@ const Shadowrealm = ({user, setUser}) => {
     }
 
     return (
-        <>
-        <p>Are you sure you want to banish your Account to the Shadow Realm?</p>
-            {error && <div className="error">{error}</div>}
-            <button disabled={banishment} onClick={handleDelete}>YES DELETE MY ACCOUNT</button>
-        <button onClick={()=>{navigate('/settings')}}>NO</button>
-        </>
+        <div className = 'login-box'>
+            <h2>Are you sure you want to banish your Account to the Shadow Realm?</h2>
+             {error && <div className="error">{error}</div>}
+             <form>
+            <button disabled={banishment} onClick={handleDelete} style={{ background: 'none', border: 'none', padding: '20px' }}>
+                <a >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    YES DELETE MY ACCOUNT
+                </a>
+           </button>
+            <button style={{ background: 'none', border: 'none', padding: '20px' }} type="submit" onClick={() => { navigate('/settings') }}>
+                <a >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    NO
+                </a>
+            </button>
+            </form>
+        </div>
     )
 }
 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Cookies from 'js-cookie'
+import './Login/login.css'
 
 export default function Likes({ post }) {
     const [likes_count, setLikes_count] = useState(post.likes_count)
@@ -7,7 +8,7 @@ export default function Likes({ post }) {
     const handleLike = () => {
         if (!Cookies.get('token')) return;
         const request = async () => {
-            let req = await fetch(`http://localhost:3000/likes/${post.id}`, {
+            let req = await fetch(`http://localhost:3000/toggle_likes/${post.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': Cookies.get('token'),
@@ -27,9 +28,16 @@ export default function Likes({ post }) {
 
 
     return (
-        <div className="likesButton">
-            <p>{post.likes_count}</p>
-            <button onClick={() => handleLike(post)}>Like</button>
+       <div>
+            <button style={{ background: 'none', border: 'none', padding: '20px' }} onClick={() => handleLike(post)} >
+                <a >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Likes {post.likes_count}
+                </a>
+            </button>
         </div>
     )
 

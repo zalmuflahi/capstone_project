@@ -23,7 +23,7 @@ const Signup = () => {
             if (!response.ok) {
                 throw new Error(data.message);
             } else {
-                navigate('/login');
+                navigate('/');
             }
         } catch (error) {
             setError(error.message);
@@ -84,7 +84,7 @@ const Signup = () => {
                         CREATE
                     </a>
                 </button>
-                <button style={{ background: 'none', border: 'none', padding: '20px' }} onClick={()=>{navigate('/login')}}>
+                <button style={{ background: 'none', border: 'none', padding: '20px' }} onClick={()=>{navigate('/')}}>
                     <a >
                         <span></span>
                         <span></span>

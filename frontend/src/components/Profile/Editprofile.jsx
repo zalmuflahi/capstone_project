@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
+import "../Login/Login.css"
 
 const EditProfile = ({ user, setUser }) => {
     const [first_name, setFirst_name] = useState('');
@@ -38,56 +39,67 @@ const EditProfile = ({ user, setUser }) => {
         }
 
     return (
-        <div>
+        <div className='login-box'>
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit}>
-                <label>
-                    First Name:
-                    <input
-                        type="text"
-                        value={first_name}
-                        onChange={(e) => setFirst_name(e.target.value)}
-                    />
-                </label>
+                    <div className='user-box'>
+                        <h5>First name</h5>
+                        <input
+                            type="text"
+                            value={first_name}
+                            placeholder="First name"
+                            onChange={(e) => setFirst_name(e.target.value)}
+                        />
+                    </div>
                 <br />
-                <label>
-                    Last Name:
+                <div className='user-box'>
+                    <h5>Last name</h5>
                     <input
                         type="text"
                         value={last_name}
+                        placeholder="Last name"
                         onChange={(e) => setLast_name(e.target.value)}
                     />
-                </label>
+                    </div>
                 <br />
-                <label>
-                    Username:
+                <div className='user-box'>
+                    <h5>Username</h5>
                     <input
                         type="text"
                         value={username}
+                        placeholder="Username"
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                </label>
-                <br />
-                <label>
-                    Email:
-                    <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
+                </div>
                 <br/>
-                <label>
-                    New Password:
+                <div className='user-box'>
+                    <h5>Password</h5>
                     <input
                         type="password"
                         value={password}
+                        placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                </label>
+                </div>
                 <br/>
-                <button type='submit'>Save Changes</button>
-                <button onClick={()=>{navigate('/settings')}}>Back</button>
+                <button style={{ background: 'none', border: 'none', padding: '20px' }} type="submit">
+                    <a >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        SAVE CHANGES
+                    </a>
+                </button>
+                <button style={{ background: 'none', border: 'none', padding: '20px' }} type="submit" onClick={() => { navigate('/settings') }}>
+                    <a >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        CANCEL
+                    </a>
+                </button>
             </form>
         </div>
     );

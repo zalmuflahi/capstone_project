@@ -19,19 +19,18 @@ const Login = ({ user, setUser }) => {
         if (res.user) {
             Cookies.set('token', res.token)
             setUser(res.user)
-            navigate("/")
+            navigate("/home")
         }
         else {
             console.log("Login failed", res)
         }
     }
-    
     useEffect(() =>{
         if(user.username){
-            navigate("/login")
+            navigate("/")
         }
     },[user])
-
+    
     return (
         <div className='login-box'>
             <h2>Login</h2>

@@ -1,7 +1,32 @@
-.homepage{
+.homepage {
 
     .post-container {
-            display: flex;
-        }
+        display: flex;
+    
+        .scroll-container {
+                width: 800vh;
+                overflow-y: scroll;
+                scroll-behavior: smooth;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                .scroll-page {
+                    
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        width: 60%;
+                        font-size: 5em;
+                        margin: 10% 0;                     
+
+                        button{
+                            display: flex;
+                        }
+                    }
+            }
+    }
 
 }

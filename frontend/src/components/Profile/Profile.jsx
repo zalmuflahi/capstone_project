@@ -1,8 +1,11 @@
 import Cookies from "js-cookie"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Navbar from "../Navbar/Navbar.jsx"
 import Post from "../Post/Post.jsx"
+import Followers from "./follow/Followers.jsx"
 import "./Profile.scss"
+
 const Profile = ({ user, setUser }) => {
     const navigate = useNavigate()
     const [userposts, setUserposts] = useState([])
@@ -18,17 +21,19 @@ const Profile = ({ user, setUser }) => {
         if (user.username){
             request()
         }else{
-            navigate("/")
+            navigate("/home")
         }
     }, [user])
 
     return (
+        <div>
+            <Navbar />
         <div className="Profile">
             <div className="Profile-main">
                 <img src={user.pfp} alt={user.username}/>
                 <h1>{user.username}</h1>
-                <p>Following: {user.followee}</p>
-                <p>Followers: {user.followers}</p>
+
+                <Followers user={user} />
                 <hr/>
                 <h2>Posts</h2>
                 <div className="Profile-main-container">
@@ -37,6 +42,7 @@ const Profile = ({ user, setUser }) => {
                     ))}
                 </div>
             </div>
+        </div>
         </div>
     )
 }

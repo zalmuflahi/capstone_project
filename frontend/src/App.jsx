@@ -16,14 +16,14 @@ import PostContainer from './components/Post/PostContainer';
 import Shadowrealm from './components/ShadowRealm/Shadowrealm'
 import Editprofile from './components/Profile/Editprofile'
 import Cookies from "js-cookie"
+import CommentReply from './components/Comments/CommentReply'
 
 function App() {
-  const [user, setUser] = useState({ username:'', followee: '', followers: '', posts:'', first_name: '', last_name: ''})
-  
+  const [user, setUser] = useState({ username:''})
 
   const router = createBrowserRouter([
         {
-          path: "/",
+          path: "/home",
           element: <Homepage user={user} setUser={setUser} />,
         }, 
         {
@@ -34,6 +34,10 @@ function App() {
           path: "/edit_profile",
           element: <Editprofile user={user} setUser={setUser} />,
         },
+        {
+          path: "/reply/:id",
+          element: <CommentReply user={user} setUser={setUser}/>,
+         },
         {
           path: "/settings",
           element: <Settings setUser={setUser} />,
@@ -63,7 +67,7 @@ function App() {
           element: <Shadowrealm user={user} setUser={setUser} />,
         },
     {
-      path: "/login",
+      path: "/",
       element: <Login user={user} setUser={setUser}/>,
     },
     {

@@ -26,14 +26,15 @@ const Comments = ({user, setUser}) =>{
 
     return (
         <div>
-        <button onClick={() => {navigate('/')}}>Back</button>
+        <button onClick={() => {navigate('/home')}}>Back</button>
         <Createcomments user={user} setUser={setUser} />
         <div>
             { comments.map((comment) => (
                 <div key={comment.id}>
                 <p>{comment.text}</p>
                 <Commentlikes comment={comment}/>
-                <Commentshare comment={comment}/>
+                <button onClick={() => { navigate(`/reply/${comment.id}`) }}>Reply</button>
+                <Commentshare comment={comment}/>        
                 </div>
             ))}
         </div>

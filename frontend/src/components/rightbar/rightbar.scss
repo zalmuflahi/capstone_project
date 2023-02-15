@@ -1,56 +1,60 @@
-.Leftbar{
-    width: 100px;
+.Leftbar {
+    width: 30%;
     position: sticky;
     top: 70px;
     height: calc(100vh - 70px);
 
-        hr {
-                margin: 20px 0px;
-                border: none;
-                height: 0.5px;
-                background-color: lightgray;
-            }
-    .container{
+    hr {
+        margin: 20px 0px;
+        border: none;
+        height: 0.5px;
+        background-color: lightgray;
+    }
+
+    .container {
         padding: 20px;
-    grid-area: menu;
-        .menu{
+        grid-area: menu;
+
+        .menu {
 
             display: flex;
             flex-direction: column;
             gap: 40px;
 
-            .user{
+            .user {
 
                 display: flex;
                 align-items: center;
                 gap: 5px;
-                img{
+
+                img {
 
                     width: 30px;
                     height: 30px;
                     border-radius: 50%;
                     object-fit: cover;
-                    gap:10px;
+                    gap: 10px;
 
                 }
-                
-                span{
-                    font-size: 14px;  
+
+                span {
+                    font-size: 14px;
                 }
             }
 
-            .item{
+            .item {
                 display: flex;
                 align-items: center;
                 gap: 5px;
-                img{
+
+                img {
                     width: 30px;
                     height: 30px;
                     object-fit: cover;
                     gap: 10px;
                 }
 
-                span{
+                span {
                     font-size: 12px;
                 }
             }

@@ -1,4 +1,12 @@
 class FollowsController < ApplicationController
+  before_action :authenticate, only: [:create, :destroy]
+  
+
+  def view_followees
+    user = User.find(params[:id])
+    render json: user
+  end
+
 
   def create
     user_to_follow = User.find_by(username: params[:username])

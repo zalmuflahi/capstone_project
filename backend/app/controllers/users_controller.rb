@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   before_action :authenticate, only: [:me, :update, :destroy]
 
   def me
-    render json: {user: @current_user}
+    followers_count = @current_user.followers.count
+    followees_count = @current_user.followees.count
+    render json: {user: @current_user, followers_count: followers_count, followees_count: followees_count}
   end
 
   
@@ -18,14 +20,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # def show
-  #   user = User.find(params[:id])
-  #   if @current_user.id == user.id
-  #       render json: { user: user }, status: 200
-  #   else
-  #   render json: {error: 'Fuck up outta here'}, status: 420
-  #   end
-  # end
+  def index
+   user = User.all
+   render json: user
+  end
 
   def create
     user = User.new(user_params)

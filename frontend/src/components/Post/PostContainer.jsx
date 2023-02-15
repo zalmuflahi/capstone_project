@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const PostContainer = ({ user, setUser }) => {
+const PostContainer = ({ setUser }) => {
     const [caption, setCaption] = useState('');
     const [image_url, setImage_url] = useState('');
     const [error, setError] = useState('');
@@ -28,7 +28,7 @@ const PostContainer = ({ user, setUser }) => {
             }
             const res = await req.json();
             setUser(res.user);
-            navigate('/')
+            navigate('/home')
         } catch (error) {
             setError(error.message);
         }
@@ -53,7 +53,7 @@ const PostContainer = ({ user, setUser }) => {
                 />
                 <button type="submit">Create Post</button>
             </form>
-            <button onClick={() => navigate('/')}>Cancel</button>
+            <button onClick={() => navigate('/home')}>Cancel</button>
         </div>
     );
 };
