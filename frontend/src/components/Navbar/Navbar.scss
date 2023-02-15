@@ -1,48 +1,73 @@
-.navbar{
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 10px 20px;
-height: 50px;
-border-bottom: 1px solid lightgrey;
-position: sticky;
-top: 0px;
-bottom: 70px;
-background-color: white;
-    .left{
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
+.dark-mode .navbar .left a span {
+    color: white;
+}
+.navbar {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode .navbar {
+    background-color: black;
+    color: white;
+}
+.navbar.dark-mode .left span {
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: 50px;
+    border-bottom: 1px solid lightgrey;
+    position: sticky;
+    top: 0px;
+    bottom: 70px;
+    background-color: white;
+
+    .left {
         display: flex;
         align-items: center;
         gap: 30px;
-        span{
-        font-weight: bold;
-        font-size: 20px;
-        color: rgb(34, 4, 60)
+
+        span {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(34, 4, 60)
         }
 
-        .search{
+        .search {
             display: flex;
             align-items: center;
             gap: 10px;
             border: 1px solid lightgrey;
             border-radius: 5px;
             padding: 5px;
-            input{
+
+            input {
                 border: none;
                 width: 500px;
             }
         }
     }
 
-    .right{
+    .right {
         display: flex;
         align-items: center;
         gap: 20px;
-        .user{
+
+        .user {
             display: flex;
             align-items: center;
             gap: 5px;
             font-weight: 500;
-            img{
+
+            img {
                 width: 30px;
                 height: 30px;
                 border-radius: 50%;
