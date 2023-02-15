@@ -24,7 +24,17 @@ export default function Commentlikes({ comment }) {
     return (
         <div className="likesButton">
             <p>{comment.heart_count}</p>
-            <button onClick={() => { clicklike(comment) }}>Like</button>
+            <form>
+                <button style={{ background: 'none', border: 'none', padding: '0px' }} onClick={() => { clicklike(comment) }}>
+                    <a >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Likes
+                    </a>
+                </button>
+            </form>
         </div>
     )
 

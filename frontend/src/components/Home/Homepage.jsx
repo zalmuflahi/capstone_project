@@ -6,11 +6,11 @@ import Share from '../Share'
 import './Homepage.scss'
 import Navbar from "../Navbar/Navbar";
 import Leftbar from "../leftBar/Leftbar";
-import Rightbar from "../rightbar/Rightbar";
 
 const Homepage = ({ user, setUser }) => {
     const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
+
 
     useEffect(() => {
         const loadFeed = async () => {
@@ -28,14 +28,14 @@ const Homepage = ({ user, setUser }) => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar user={user}/>
         <div className='homepage'>
                 <div className='post-container'>
                     <Leftbar user={user} setUser={user} />
                     <div className='scroll-container'>
                     {posts.map(post => (
                         <div key={post.id} className='scroll-page'>
-                            <img src={post.image_url} alt={post.caption}/>
+                            <img src={post.image_url} alt=''/>
                             <p>{post.caption}</p>
                             <div>
                             <Likes post={post} />
@@ -54,8 +54,8 @@ const Homepage = ({ user, setUser }) => {
                     ))}
                     </div>
                     {/* <div><Rightbar user={user} setUser={user} /></div> */}
-                </div>
         </div>
+            </div>
         </div>
     )
 }

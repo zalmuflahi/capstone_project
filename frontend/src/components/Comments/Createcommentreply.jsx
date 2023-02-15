@@ -33,13 +33,22 @@ const Createcommentreply = ({ user, setUser}) => {
     return(
         <div> 
             <form onSubmit={createReply}>
-                <input
+                <div className='user-box'><input
                     name="comment"
                     type="text"
                     placeholder="Comment on Comment"
                     onChange={(e) => setReply(e.target.value)}
                 />
-                <button type="submit">Post</button>
+                </div>
+                <button style={{ background: 'none', border: 'none', padding: '0px' }} type="submit">
+                    <a >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Post
+                    </a>
+                    </button>
             </form>
         </div>
     )

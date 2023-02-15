@@ -36,13 +36,23 @@ return (
     <div>
         <form onSubmit={createComment}>
             {error && <p>{error}</p>}
-            <input
+            <div className='user-box'><input
             name="comment" 
             type="text" 
             placeholder="Comment on Post" 
             onChange={(e) => setText(e.target.value)}
             />
-            <button>Post</button>
+            </div>
+            <button style={{ background: 'none', border: 'none', padding: '0px' }} type="submit">
+                <a >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Post
+                </a>
+            </button>
+            <hr styles={{ borderColor: 'black' }} />
         </form>
     </div>
 )

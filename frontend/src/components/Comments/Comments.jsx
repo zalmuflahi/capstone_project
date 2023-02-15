@@ -26,14 +26,33 @@ const Comments = ({user, setUser}) =>{
 
     return (
         <div>
-        <button onClick={() => {navigate('/home')}}>Back</button>
-        <Createcomments user={user} setUser={setUser} />
-        <div>
+            <button style={{ backgroundColor: 'lightgrey', border: 'lightgrey', padding: '10px' }} type="submit" onClick={() => { navigate('/home') }}>
+                <a >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Back
+                </a>
+            </button>
+            <div className='login-box' >
+            <Createcomments user={user} setUser={setUser} />
             { comments.map((comment) => (
                 <div key={comment.id}>
+                    <h2>{user.username}</h2>
                 <p>{comment.text}</p>
                 <Commentlikes comment={comment}/>
-                <button onClick={() => { navigate(`/reply/${comment.id}`) }}>Reply</button>
+                <form>
+                    <button style={{ background: 'none', border: 'none', padding: '0px' }} type="submit" onClick={() => { navigate(`/reply/${comment.id}`) }} >
+                        <a>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Reply
+                        </a>
+                    </button >
+                </form>
                 <Commentshare comment={comment}/>        
                 </div>
             ))}

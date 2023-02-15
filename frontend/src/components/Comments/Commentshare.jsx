@@ -22,7 +22,18 @@ const commentShare = async () => {
 
     return (
         <div>
-            <button onClick={commentShare}>Share</button>
+            <form>
+            <button style={{ background: 'none', border: 'none', padding: '0px' }} onClick={commentShare}>
+                <a >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Share
+                </a>
+            </button>
+            <hr/>
+                </form>
         </div>
     );
 };

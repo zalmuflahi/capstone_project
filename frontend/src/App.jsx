@@ -19,7 +19,8 @@ import Cookies from "js-cookie"
 import CommentReply from './components/Comments/CommentReply'
 
 function App() {
-  const [user, setUser] = useState({ username:''})
+  const [user, setUser] = useState({ username:'', first_name: '', last_name: '', pfp_url: '', email: ''})
+  
 
   const router = createBrowserRouter([
         {

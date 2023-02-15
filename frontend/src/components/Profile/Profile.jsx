@@ -30,7 +30,7 @@ const Profile = ({ user, setUser }) => {
             <Navbar />
         <div className="Profile">
             <div className="Profile-main">
-                <img src={user.pfp} alt={user.username}/>
+                    <img src={user.pfp_url} alt='' />
                 <h1>{user.username}</h1>
 
                 <Followers user={user} />

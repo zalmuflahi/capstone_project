@@ -36,24 +36,44 @@ const PostContainer = ({ setUser }) => {
 
 
     return (
-        <div>
+        <div className='login-box'>
             <form onSubmit={createPost}>
                 {error && <p>{error}</p>}
+                <div className='user-box'>
                 <input
                     type="text"
                     placeholder="Status"
                     value={caption}
                     onChange={(e) => setCaption(e.target.value)}
                 />
+                </div>
+                <div className='user-box'>
                 <input
                     type="text"
                     placeholder="upload Image"
                     value={image_url}
                     onChange={(e) => setImage_url(e.target.value)}
                 />
-                <button type="submit">Create Post</button>
+                </div>
+                <button style={{ background: 'none', border: 'none', padding: '0px' }} type="submit">
+                    <a >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Create Post
+                    </a>
+                </button>
+                <button style={{ background: 'none', border: 'none', padding: '0px' }} type="submit" onClick={() => { navigate('/home') }}>
+                    <a >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Cancel
+                    </a>
+                </button>
             </form>
-            <button onClick={() => navigate('/home')}>Cancel</button>
         </div>
     );
 };

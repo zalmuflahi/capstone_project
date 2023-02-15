@@ -9,7 +9,7 @@ import {HomeOutlined,
     SearchOutlined} from '@mui/icons-material/'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({user}) => {
    const navigate = useNavigate()
     return (
         <div className='navbar'>
@@ -30,8 +30,8 @@ const Navbar = () => {
                 <EmailOutlined/>
                 <NotificationsOutlined />
                 <div className='user' onClick={()=>{navigate('/profile')}}>
-                    <img src='https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600' alt=''/>
-                    <span>John Doe</span>
+                    {/* <img src={user.pfp_url} alt=''/> */}
+                    {/* <span>{user.username}</span> */}
                 </div>
             </div>
         </div>

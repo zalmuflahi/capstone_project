@@ -28,7 +28,6 @@ export default function Likes({ post }) {
 
 
     return (
-       <div>
             <button style={{ background: 'none', border: 'none', padding: '20px' }} onClick={() => handleLike(post)} >
                 <a >
                     <span></span>
@@ -38,7 +37,6 @@ export default function Likes({ post }) {
                     Likes {post.likes_count}
                 </a>
             </button>
-        </div>
     )
 
 }
