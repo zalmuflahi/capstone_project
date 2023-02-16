@@ -7,11 +7,8 @@ class User < ApplicationRecord
   has_many :likes
   has_many :shared_posts, through: :shares, source: :post
   has_many :shared_comments, through: :shares, source: :comment
-
-  has_many :received_messages, foreign_key: :receiver_id , class_name: 'Message'
-  has_many :receivers, through: :received_messages, source: :receiver
-  has_many :sent_messages, foreign_key: :sender_id , class_name: 'Message'
-  has_many :senders, through: :sent_messages, source: :sender
+  has_many :messages 
+  has_many :rooms
 
   has_secure_password
 

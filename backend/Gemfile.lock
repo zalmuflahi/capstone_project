@@ -196,6 +196,7 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
+  actioncable (~> 6.1)
   active_model_serializers (~> 0.10.13)
   activestorage
   aws-sdk-s3

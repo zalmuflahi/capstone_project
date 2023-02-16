@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :reply_likes
   resources :comment_replies
-  resources :messages
+  
+  mount ActionCable.server => '/cable'
+  get '/messages', to: 'messages#index'
+  get '/messages/:id', to: 'messages#show'
+  post '/messages', to: 'messages#create'
 
   get '/friends/:id', to: 'follows#view_followees'
   get '/search', to: 'users#index'

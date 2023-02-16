@@ -17,6 +17,7 @@ import Shadowrealm from './components/ShadowRealm/Shadowrealm'
 import Editprofile from './components/Profile/Editprofile'
 import Cookies from "js-cookie"
 import CommentReply from './components/Comments/CommentReply'
+import Messages from './components/messages/Messages'
 
 function App() {
   const [user, setUser] = useState({ username:'', first_name: '', last_name: '', pfp_url: '', email: ''})
@@ -26,6 +27,10 @@ function App() {
         {
           path: "/home",
           element: <Homepage user={user} setUser={setUser} />,
+        }, 
+        {
+          path: "/sms",
+          element: <Messages user={user} setUser={setUser} />,
         }, 
         {
           path: "/profile",

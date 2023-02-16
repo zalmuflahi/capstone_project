@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_15_011734) do
+ActiveRecord::Schema.define(version: 2023_02_15_225354) do
 
   create_table "comment_likes", force: :cascade do |t|
     t.integer "user_id"
@@ -51,8 +51,7 @@ ActiveRecord::Schema.define(version: 2023_02_15_011734) do
 
   create_table "messages", force: :cascade do |t|
     t.string "sms"
-    t.integer "sender_id"
-    t.integer "receiver_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -69,6 +68,13 @@ ActiveRecord::Schema.define(version: 2023_02_15_011734) do
   create_table "reply_likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "comment_reply_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "message_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -27,7 +27,7 @@ const Navbar = ({user}) => {
             </div>
             <div className='right'>
                 <PersonOutlined onClick={()=>navigate('/settings')}/>
-                <EmailOutlined/>
+                <EmailOutlined onClick={()=>navigate('/sms')}/>
                 <NotificationsOutlined />
                 <div className='user' onClick={()=>{navigate('/profile')}}>
                     {/* <img src={user.pfp_url} alt=''/> */}
