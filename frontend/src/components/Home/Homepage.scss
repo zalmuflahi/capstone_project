@@ -1,16 +1,32 @@
-.homepage {
+.post-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
 
-    .post-container {
-        display: flex;
+.homepage {
+   
     
         .scroll-container {
-                width: 800vh;
+                width: 400vh;
                 overflow-y: scroll;
                 scroll-behavior: smooth;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+
+                .scroll-page div {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 75%;
+                        padding: 0 17rem;
+
+                        
+                            
 
                 .scroll-page {
                     
@@ -22,9 +38,7 @@
                         font-size: 5em;
                         margin: 10% 0;                     
 
-                        button{
-                            display: flex;
-                        }
+                       
                     }
             }
     }

@@ -28,15 +28,11 @@ export default function Likes({ post }) {
 
 
     return (
-            <button style={{ background: 'none', border: 'none', padding: '20px' }} onClick={() => handleLike(post)} >
-                <a >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+       <div>
+            <button className="btn-1" onClick={() => handleLike(post)} >
                     Likes {post.likes_count}
-                </a>
             </button>
+        </div>
     )
 
 }
