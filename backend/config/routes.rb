@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   get '/sharedcomment/:id', to: 'shares#sharecomment'
   post '/commentreply/:id', to: 'comment_replies#createcommentreply'
   get '/commentreply/:id', to: 'comment_replies#show'
-
+  get '/user_rooms', to: 'rooms#user_rooms'
+  get '/chat_messages', to: 'messages#chat_messages'
 end

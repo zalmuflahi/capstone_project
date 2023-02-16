@@ -24,7 +24,7 @@ const Leftbar = ({ user, setUser }) => {
         setShowFollowings(true)
     };
     const getFollowers = async () => {
-        const resp = await fetch(`http://localhost:3000/friends/followers/${user.id}`, {
+        const resp = await fetch(`http://localhost:3000/friends/${user.id}`, {
             headers: { Authorization: Cookies.get('token') },
         });
         const data1 = await resp.json();
@@ -48,7 +48,7 @@ const Leftbar = ({ user, setUser }) => {
             <div className="container">
                 <div className="menu">
                     <div className="user" onClick={() => navigate('/profile')}>
-                        <img src={user.pfp_url} alt="" />
+                        <img src='https://www.iconpacks.net/icons/2/free-user-profile-icon-4255-thumb.png' alt="" />
                         <span>{user.username}</span>
                     </div>
                     <hr />
@@ -90,7 +90,7 @@ const Leftbar = ({ user, setUser }) => {
                         <span>My Posts</span>
                     </div>
                     <hr />
-                    <div className="item">
+                    <div className="item" onClick={() => navigate('/sms')}>
                         <img src={sms} alt="" />
                         <span>Messages</span>
                     </div>

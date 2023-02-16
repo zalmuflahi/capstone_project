@@ -1,70 +1,83 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-const Messages = () => {
-    const [sms, setSms] = useState([]);
+import { useNavigate } from 'react-router-dom';
+const Messages = ({user,cable}) => {
+    const [messages, setMessages] = useState([])
+    const [chatbox, setChatBox] = useState("")
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        const ws = new WebSocket('ws://localhost:3000/cable');
-        ws.onopen = () => {
-            console.log('Websockets connected!');
-            ws.send(
-                JSON.stringify({
-                    command: 'subscribe',
-                    identifier: JSON.stringify({ channel: 'MessageChannel' }),
-                })
-            );
-        };
-
-        ws.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-
-            if (
-                data.type === 'ping' ||
-                data.type === 'welcome' ||
-                data.type === 'confirm_subscription'
-            ) {
-                return;
-            }
-
-            const smsData = JSON.parse(data.message.sms);
-            setSms((prevSms) => [smsData, ...prevSms]);
-        };
-
-        return () => {
-            ws.close();
-        };
-    }, []);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const req = await fetch('http://localhost:3000/messages', {
-            method: 'POST',
+    const handleMessage = async ()=>{
+        const token = Cookies.get('token');
+        
+        const req = await fetch("http://localhost:3000/messages",{
+            method: "POST",
             headers: {
-                'Authorization': Cookies.get('token'),
-                'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: e.target.content.value }),
-        });
+                "Content-Type": "application/json",
+                accept: "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                room_id: window.location.href.match(/\d+$/)[0],
+                sms: chatbox,
+            })
+        })
+    }
+    const getRoomData = async (uuid) =>{
+        const req = await fetch(`http://localhost:3000/chat_messages?uuid=${window.location.href.match(/\d+$/)[0]}`)
+        const res = await req.json()
 
-        e.target.content.value = '';
-    };
+        if(res.error){
+            
+        }else{
+            setMessages(res)
+        }
+    }
+    const updateApp = (result) => {
+        if(result.error){
+            // FAILED
+        }else{
+            // success
 
+            setMessages((prev) => [...prev, result.message]);
+        }
+      };
+    useEffect(() => {
+        getRoomData()
+        cable.room = cable.cable.subscriptions.create(
+            {
+              channel: "MessageChannel",
+              room: window.location.href.match(/\d+$/)[0],
+            },
+            {
+              received: (result) => {
+              //   console.log("updatedRoom", result);
+                updateApp(result);
+              },
+            }
+          );
+          
+    }, [])
+    
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    name="content"
-                    placeholder="All you have to do is ..."
-                    cols="30"
-                    rows="10"
-                />
-                <button type="submit">Send Message</button>
-            </form>
-            {sms.map((message) => (
-                <div key={message.id}>
-                    <p>{message.content}</p>
-                    <p>{message.created_at}</p>
+        <div >
+            <button style={{ background: 'none', backgroundColor: 'lightgrey', height: '60px', width: '10%', border: 'none', padding: '5px' }} onClick={() => { navigate('/home') }}>back</button>
+            <div className='Message-container'>
+           {messages.map(sms=>{
+            return(
+                <div style={{backgroundColor: user.username === sms.username ? "#4287f5" : "#cad5e8",alignSelf: user.username === sms.username ? "flex-end" : "flex-start"}} className='Message'>
+                    <p>{sms.sms}</p>
                 </div>
-            ))}
+            )
+           })}
+
+            </div>
+
+           <input
+           value={chatbox}
+           onChange={(e)=> setChatBox(e.target.value)}
+                style={{ background: 'none', height: '50px', width: '89%' , padding: '5px' }}
+           />
+            <button style={{ background: 'none', backgroundColor: 'silver', height: '60px', width: '10%', border: 'none', padding: '5px' }} onClick={handleMessage}>Send</button>
         </div>
     );
 };

@@ -18,9 +18,10 @@ import Editprofile from './components/Profile/Editprofile'
 import Cookies from "js-cookie"
 import CommentReply from './components/Comments/CommentReply'
 import Messages from './components/messages/Messages'
-
-function App() {
-  const [user, setUser] = useState({ username:'', first_name: '', last_name: '', pfp_url: '', email: ''})
+import Chat from './components/messages/Chat'
+import "./App.css"
+function App({cable}) {
+  const [user, setUser] = useState({ username: '', first_name: '', last_name: '', pfp_url: 'https://www.iconpacks.net/icons/2/free-user-profile-icon-4255-thumb.png', email: ''})
   
 
   const router = createBrowserRouter([
@@ -30,7 +31,11 @@ function App() {
         }, 
         {
           path: "/sms",
-          element: <Messages user={user} setUser={setUser} />,
+          element: <Chat user={user} setUser={setUser} cable={cable}/>,
+        }, 
+        {
+          path: "/room/:uuid",
+          element: <Messages user={user} setUser={setUser} cable={cable}/>,
         }, 
         {
           path: "/profile",
