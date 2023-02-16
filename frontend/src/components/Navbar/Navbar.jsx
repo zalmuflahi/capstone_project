@@ -10,7 +10,7 @@ import {
     SearchOutlined
 } from '@mui/icons-material/'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -46,8 +46,6 @@ const Navbar = () => {
                 <EmailOutlined onClick={()=>navigate('/sms')}/>
                 <NotificationsOutlined />
                 <div className='user' onClick={()=>{navigate('/profile')}}>
-                    {/* <img src={user.pfp_url} alt=''/> */}
-                    {/* <span>{user.username}</span> */}
                 </div>
             </div>
         </div>

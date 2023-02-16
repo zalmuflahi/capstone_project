@@ -18,23 +18,15 @@ export default function Commentlikes({ comment }) {
             }),
         });
         let res = await req.json()
-        if (res) setHeart_count(res.heart_count)
+        if (res) setHeart_count(res)
     }
 
     return (
-        <div className="likesButton">
+        <div>
             <p>{comment.heart_count}</p>
-            <form>
-                <button style={{ background: 'none', border: 'none', padding: '0px' }} onClick={() => { clicklike(comment) }}>
-                    <a >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+            <button style={{ background: 'none', backgroundColor: 'lightgrey', border: '', border: 'none', padding: '5px' }} onClick={() => { clicklike(comment) }}>
                         Likes
-                    </a>
                 </button>
-            </form>
         </div>
     )
 

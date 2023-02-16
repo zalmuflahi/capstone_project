@@ -9,7 +9,7 @@ const CommentReply = ({ user, setUser }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const loadCommentreply = async () => {
+        const loadCommentreply = async (uuid) => {
             let req = await fetch(`http://localhost:3000/commentreply/${window.location.href.match(/\d+$/)[0]}`, {
                 headers: { 'Authorization': Cookies.get('token') },
             })
@@ -26,7 +26,7 @@ const CommentReply = ({ user, setUser }) => {
 
     return (
         <div>
-            <button style={{ backgroundColor: 'lightgrey', border: 'lightgrey', padding: '10px' }} type="submit" onClick={() => { navigate(`/comments/${window.location.href.match(/\d+$/)[0]}`) }}>
+            <button style={{ backgroundColor: 'lightgrey', height: '60px', width: '10%', padding: '10px' }} type="submit" onClick={() => { navigate(`/home`) }}>
                 <a >
                     <span></span>
                     <span></span>
@@ -41,7 +41,7 @@ const CommentReply = ({ user, setUser }) => {
             commentreply.map((comment) => (
                 <div key={comment.id}>
                     <h2>{user.username}</h2>
-                    <p>{comment.reply}</p>
+                    <h3>{comment.reply}</h3>
                     <Replylikes comment={comment}/>
                 </div>
             ))}

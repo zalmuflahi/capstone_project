@@ -22,11 +22,7 @@ const Share = ({ post }) => {
 
 return (
         <div>
-        <button className="btn-1" onClick={handleShare} >
-                
-                    Share
-                
-            </button>
+        <button className="btn-1" onClick={handleShare} >Share</button>
         </div>
 );
 };

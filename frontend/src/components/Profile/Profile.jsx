@@ -30,7 +30,7 @@ const Profile = ({ user, setUser }) => {
             <Navbar />
         <div className="Profile">
             <div className="Profile-main">
-                    <img src={user.pfp_url} alt='' />
+                    <img src='https://www.iconpacks.net/icons/2/free-user-profile-icon-4255-thumb.png' alt='' />
                 <h1>{user.username}</h1>
 
                 <Followers user={user} />

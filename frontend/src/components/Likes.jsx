@@ -29,9 +29,7 @@ export default function Likes({ post }) {
 
     return (
        <div>
-            <button className="btn-1" onClick={() => handleLike(post)} >
-                    Likes {post.likes_count}
-            </button>
+            <button className="btn-1" onClick={() => handleLike(post)} >Likes {post.likes_count}</button>
         </div>
     )
 

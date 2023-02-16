@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_many :shared_posts, through: :shares, source: :post
   has_many :shared_comments, through: :shares, source: :comment
   has_many :messages 
-  has_many :rooms
+  has_many :chats
+  has_many :rooms, through: :chats
 
   has_secure_password
 

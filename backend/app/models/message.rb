@@ -1,4 +1,7 @@
 class Message < ApplicationRecord
-beloongs_to :user
-belongs_to :room 
+belongs_to :user
+belongs_to :room
+    def username
+        user.username
+    end
 end
