@@ -6,8 +6,8 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :username
       t.string :email
       t.string :password_digest
-      t.string :bio
-      t.string :pfp_url
+      t.string :bio, default: ''
+      t.string :pfp_url, default: ''
 
     end
   end

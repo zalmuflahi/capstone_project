@@ -1,26 +1,20 @@
 class CommentsController < ApplicationController
-  # GET /comments/1
+  APP_SECRET = "ToBeOrNotToBeThatIsTheRealQuestionMyGuy"
+  before_action :authenticate, only: [:createcomment, :update, :destroy, :show, :hearts]
+
   def show
-    post = Post.find(params[:post_id])
-    if post
-      render json: post.comments
-    else
-      render json: {error: 'Post not found'}, status: :not_found
-    end
+    comments = @current_user.comments
+    render json: comments
   end
 
-  # POST /comments
- def create 
-        comment = Comment.create!(comment_params)
-        if comment
-            render json: 'Comment has been posted'
-        else
-            render json: comment.errors, status: :unprocessable_entity
-        end
-    end
+  def createcomment
+    comment = Comment.create!(text:params[:text],user_id:@current_user.id,post_id:params[:id])
+    render json: comment
+  end
 
   # PATCH/PUT /comments/1
-  def update
+   def update
+    @comment = @current_user.comments.find(params[:id])
     if @comment.update(comment_params)
       render json: @comment
     else
@@ -30,12 +24,14 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   def destroy
+    @comment = @current_user.comments.find(params[:id])
     @comment.destroy
+    render json: {message: 'Comment has been obliterated.'}, status: :ok
   end
 
   private
  # Only allow a list of trusted parameters through.
     def comment_params
-      params.permit(:text, :user_id, :post_id, :heart_count)
+      params.permit(:text, :user_id, :post_id)
     end
 end

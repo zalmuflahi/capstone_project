@@ -4,7 +4,6 @@ class CreateComments < ActiveRecord::Migration[6.1]
       t.string :text
       t.integer :user_id
       t.integer :post_id
-      t.integer :heart_count, default: 0
 
       t.timestamps
     end

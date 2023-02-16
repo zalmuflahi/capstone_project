@@ -1,7 +1,7 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :content, :image_url, :likes_count
+  attributes :id, :caption, :image_url, :likes_count
   
-  belongs_to :user
-  has_many :comments
-  has_many :shares
+  def likes_count
+    Like.where(post_id:object.id).length
+  end
 end

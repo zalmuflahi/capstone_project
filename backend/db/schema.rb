@@ -10,13 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_06_163454) do
+ActiveRecord::Schema.define(version: 2023_02_15_225354) do
+
+  create_table "comment_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "comment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comment_replies", force: :cascade do |t|
+    t.string "reply"
+    t.integer "user_id"
+    t.integer "comment_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
     t.integer "user_id"
     t.integer "post_id"
-    t.integer "heart_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -28,19 +42,39 @@ ActiveRecord::Schema.define(version: 2023_02_06_163454) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "sms"
-    t.integer "sender_id"
-    t.integer "receiver_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
+    t.string "user_username"
     t.string "image_url"
-    t.string "content"
-    t.integer "likes_count", default: 0
+    t.string "caption"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reply_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "comment_reply_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "message_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -59,8 +93,8 @@ ActiveRecord::Schema.define(version: 2023_02_06_163454) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.string "bio"
-    t.string "pfp_url"
+    t.string "bio", default: ""
+    t.string "pfp_url", default: ""
   end
 
 end
